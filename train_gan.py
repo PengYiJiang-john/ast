@@ -1,29 +1,20 @@
 import argparse
-import logging
-import os
 
-import numpy as np
-import math, copy, time
-import torch
+import copy
 from torch import nn
 import torch.optim as optim
-from torch.autograd import Variable
 from torch.utils.data.sampler import RandomSampler
 from tqdm import tqdm
-import json
-from IPython import embed
-
 
 import utils
 from utils import EarlyStopping
-import gan_transformer as transformer
+from model import gan_transformer as transformer
 from evaluate import evaluate
 from opt import OpenAIAdam
 from dataloader import *
 
 import matplotlib
 matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 
 logger = logging.getLogger('Transformer.Train')
 
@@ -73,7 +64,7 @@ def train(model: nn.Module,
         # Adversarial ground truths
         valid = torch.autograd.Variable(torch.cuda.FloatTensor(batch_size, 1).fill_(1.0), requires_grad=False)
         fake = torch.autograd.Variable(torch.cuda.FloatTensor(batch_size, 1).fill_(0.0), requires_grad=False)
-        
+
         labels = labels_batch[:,params.predict_start:]
         q50, q90 = model.forward(train_batch, idx)   
         d_loss = 0
@@ -123,7 +114,7 @@ def train_and_evaluate(model: nn.Module,
                        optimizer_G,
                        optimizer_D,
                        adversarial_loss,
-                       params: utils.Params,
+                       params: utils.Params,Jpyzui6!
                        restore_file: str = None) -> None:
     '''Train the model and evaluate every epoch.
     Args:

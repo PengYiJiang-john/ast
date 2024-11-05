@@ -114,7 +114,7 @@ if __name__ == '__main__':
     if not os.path.exists(save_path):
         os.makedirs(save_path)
     
-    csv_path = '/home/wusifan/backup/wusifan/universal_transformer/data/elect72/LD2011_2014.txt'
+    csv_path = '/Users/jiangpengyi/PycharmProjects/AST/data/elect/LD2011_2014.txt'
     
     if not os.path.exists(csv_path):
         zipurl = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00321/LD2011_2014.txt.zip'
